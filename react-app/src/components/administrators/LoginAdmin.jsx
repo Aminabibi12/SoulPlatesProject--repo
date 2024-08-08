@@ -24,7 +24,7 @@ function LoginAdmin(){
     };
 
     try {
-        const response = await fetch('https://node-server-iota-six.vercel.app/admin/login', {
+        const response = await fetch('http://localhost:5550/admin/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

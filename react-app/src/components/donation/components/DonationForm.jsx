@@ -103,7 +103,7 @@ function DonationForm() {
 export default DonationForm;*/
 
 
-import {useState} from "react";
+import { useState } from "react";
 import Button from "../General-Components/Button";
 import Message from "../General-Components/Message";
 import InputFiled from "../General-Components/InputFiled";
@@ -165,7 +165,7 @@ function DonationForm() {
 
     async function createNewDonor(formData) {
         try {
-            const response = await fetch("https://node-server-iota-six.vercel.app/donors", {
+            const response = await fetch("http://localhost:5550/donors", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -174,7 +174,14 @@ function DonationForm() {
             });
 
             const reply = await response.json();
-            alert("Thank you for your donation");
+            if (response.ok) {
+                alert("Thank you for your donation");
+                // Reset input fields after successful submission
+                setUserFullName("");
+                setUserEmail("");
+                setUserMessage("");
+                setDonationAmount(0);
+            }
             return reply;
         } catch (error) {
             console.error(error);
@@ -213,4 +220,3 @@ function DonationForm() {
 }
 
 export default DonationForm;
-

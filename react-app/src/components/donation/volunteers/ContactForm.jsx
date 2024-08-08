@@ -42,7 +42,7 @@ function ContactForm() {
 
         onSubmit: async (values) => {
             try {
-                const response = await fetch("https://node-server-iota-six.vercel.app/volunteers", {
+                const response = await fetch("http://localhost:5550/volunteers", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

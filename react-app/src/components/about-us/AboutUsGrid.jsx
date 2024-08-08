@@ -6,7 +6,7 @@ function AboutUsGrid() {
   const [aboutUs, setAboutUs] = useState([]);
 
   useEffect(() => {
-    fetch('https://node-server-iota-six.vercel.app/aboutus', {
+    fetch('http://localhost:5550/aboutus', {
       credentials: 'include' 
     })
     .then((response) => {

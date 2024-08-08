@@ -19,7 +19,7 @@ function RegisterForm(){
     };
 
     try {
-        const response = await fetch('https://node-server-iota-six.vercel.app/register', {
+        const response = await fetch('http://localhost:5550/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

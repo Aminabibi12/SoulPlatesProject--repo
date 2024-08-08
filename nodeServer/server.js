@@ -7,7 +7,8 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
-//for mail
+//for mail***************
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -28,15 +29,18 @@ app.use(
 );
 
 // Configuración de pg-pool
+
 const pool = new Pool({
-  host: "",
-  user: "",
-  password: "150396+Majo",
+  host: "localhost",
+  user: "postgres",
+  password: "occlaptop1",
   database: "soul_plates",
+  port:5433,
   max: 10, // número máximo de clientes en el pool
   idleTimeoutMillis: 30000, // tiempo máximo de inactividad antes de cerrar el cliente
 });
 
+//for Register ************
 app.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
 
@@ -66,7 +70,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-//Login
+//Login *************
 app.post("/admin/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -109,14 +113,14 @@ app.post("/admin/login", async (req, res) => {
   }
 });
 
-/// LOGOUT
+/// LOGOUT ***********
 
 app.post("/admin/logout", (req, res) => {
   res.clearCookie("token");
   res.status(200).json({ message: "You have successfuly logged out" });
 });
 
-//beneficiaries insertion
+//beneficiaries insertion***********
 app.post("/contact/beneficiaries", async (req, res) => {
   const {
     userFirstName,
