@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AboutUsCard from './AboutUsCards'; // Correct the import
+import AboutUsCard from './AboutUsCards'; 
 import './AboutUsCards.css';
 
 function AboutUsGrid() {
@@ -22,7 +22,7 @@ function AboutUsGrid() {
   return (
     <div className="container mt-4 aboutus-container "  >
       <div className="row row-cols-sm-1 row-cols-md-3 g-2 aboutus-box">
-        {aboutUs.map((aboutUsItem, index) => (
+        {aboutUs.map((aboutUsItem) => (
           <AboutUsCard
           key={aboutUsItem.id}
           image_src={aboutUsItem.image_src}
@@ -31,13 +31,12 @@ function AboutUsGrid() {
           linkedinlink={aboutUsItem.linkedinlink}
           twitterlink={aboutUsItem.twitterlink}
           facebooklink={aboutUsItem.facebooklink}
-          
-          className={index >= 3 ? 'second-row' : ''}
           />
         ))}
       </div>
     </div>
   );
+  
 }
 
 export default AboutUsGrid;

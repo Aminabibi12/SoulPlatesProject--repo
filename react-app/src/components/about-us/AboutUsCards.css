@@ -1,4 +1,4 @@
-.aboutus-container {
+ .aboutus-container {
     background-color: white;
     padding-left: 16vw;
     padding-right: 16vw;
@@ -79,21 +79,61 @@
     color: #007bff;
 }
 
+
+
+
+
+
+
+
+@media (max-width: 1300px) and (min-width: 768px) {
+    .aboutus-container {
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
+
+    .col-md-4.aboutus {
+        flex: 0 0 50%; /* Ensure two cards per row */
+        max-width: 50%;
+     
+    }
+
+    .aboutus-card {
+        height: 320px; /* Adjust card height if needed */
+        width: 100%; /* Ensure full width for each card */
+       
+    }
+
+    .background-img-about {
+        height: 280px; /* Adjust background image height */
+    }
+}
+
+
+
+
+
+
+
+
 @media (max-width: 768px) {
+
+    
     .aboutus-card {
         height: 300px;
         width: 240px;
         background-color: #fff;
+        
     }
 
     .background-img-about {
-        height: 250px; /* Adjust the height for smaller screens */
+        height: 250px; 
     }
 
     .profile-img-about {
-        width: 100px; /* Further adjust the width for smaller screens */
-        height: 100px; /* Further adjust the height for smaller screens */
-        margin: 10px auto; /* Center the profile image */
+        width: 100px;
+        height: 100px; 
+        margin: 10px auto; 
         top: 30%;
         left: 50%;
     }
@@ -102,7 +142,7 @@
         margin-top: 20px;
     }
 
-    .aboutus-container {
+    .aboutus-box {
 
         margin: 0px;
         padding: 0px;
@@ -111,8 +151,8 @@
 
     .aboutus {
 
-        margin: 0px;
-        padding: 0px;
+        margin-left: 50px;
+        margin-right: 0px;
 
     }
     .carousel-inner {
@@ -135,3 +175,5 @@
         padding-left: 60px;
     }
 }
+
+

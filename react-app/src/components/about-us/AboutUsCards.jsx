@@ -8,7 +8,7 @@ function AboutUsCard(props) {
   return (
     <div className="col-md-4 aboutus">
       <div className="card profile-card-1 aboutus-card">
-        <img src={props.image_src} className="background-img-about" alt={props.title} />
+        <img src={props.image_src} className="background-img-about"/>
         <img src={props.profileimagesrc} className="profile-img-about"/>
         <div className="card-body aboutus-body">
           <h5 className="card-title aboutus-title" style={{ textAlign: 'center' }}>{props.fullname}</h5>

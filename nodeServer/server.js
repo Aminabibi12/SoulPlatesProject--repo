@@ -306,6 +306,9 @@ app.get("/testimonials", async (req, res) => {
   }
 });
 
+
+
+
 // Endpoint for obtain all the 'about us personell database' information
 
 app.get("/aboutus", function (req, res) {
@@ -318,6 +321,9 @@ app.get("/aboutus", function (req, res) {
     }
   });
 });
+
+
+
 
 //Edit information from beneficiares using PUT method
 app.put("/beneficiaries/:id", async (req, res) => {
