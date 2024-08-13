@@ -34,41 +34,60 @@ const pool = new Pool({
   host: "localhost",
   user: "postgres",
   password: "occlaptop1",
-  database: "soul_plates",
+  database: "Soul-Plates",
   port:5433,
   max: 10, // número máximo de clientes en el pool
   idleTimeoutMillis: 30000, // tiempo máximo de inactividad antes de cerrar el cliente
 });
 
+
+
+
 //for Register ************
 app.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
 
+  // Basic email validation
   if (!email.includes("@") || !email.includes(".")) {
     return res.status(400).json({ error: "Invalid email address." });
   }
 
+  // Additional email validation using regex (optional)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: "Invalid email address format." });
+  }
+
+
+  // Hashing the password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
   try {
     const client = await pool.connect();
+
+    // Insert new user, expecting unique constraints on username and email
     const result = await client.query(
       "INSERT INTO admins (username, email, password) VALUES ($1, $2, $3) RETURNING id",
       [username, email, hashedPassword]
     );
+    
     client.release();
 
-    res.json({ success: true });
+    res.json({ success: true, userId: result.rows[0].id }); // Returning the new user's ID
   } catch (err) {
-    if (err.code === "23505") {
+    if (err.code === "23505") { // Unique constraint violation
       return res.status(400).json({
-        error: "El nombre de usuario o correo electrónico ya está en uso.",
+        error: "Username or email already in use."
       });
     }
-    res.status(500).json({ error: "Error al registrar el usuario." });
+    res.status(500).json({ error: "Error registering the user." });
   }
 });
+
+
+
+
 
 //Login *************
 app.post("/admin/login", async (req, res) => {
@@ -116,9 +135,18 @@ app.post("/admin/login", async (req, res) => {
 /// LOGOUT ***********
 
 app.post("/admin/logout", (req, res) => {
-  res.clearCookie("token");
-  res.status(200).json({ message: "You have successfuly logged out" });
+  try {
+    res.clearCookie("token");
+    res.status(200).json({ message: "You have successfully logged out" });
+  } catch (error) {
+    console.error("Error during logout:", error);
+    res.status(500).json({ message: "An error occurred during logout. Please try again later." });
+  }
 });
+
+
+
+
 
 //beneficiaries insertion***********
 app.post("/contact/beneficiaries", async (req, res) => {
@@ -263,6 +291,7 @@ app.get("/volunteers/info", (req, res) => {
 });
 
 //donors end-point for donors table
+
 app.post("/donors", function (req, res) {
   const { full_name, email, message } = req.body;
   const query =
@@ -309,6 +338,8 @@ app.get("/testimonials", async (req, res) => {
 
 
 
+
+
 // Endpoint for obtain all the 'about us personell database' information
 
 app.get("/aboutus", function (req, res) {
@@ -321,6 +352,10 @@ app.get("/aboutus", function (req, res) {
     }
   });
 });
+
+
+
+
 
 
 

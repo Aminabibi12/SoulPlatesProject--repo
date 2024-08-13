@@ -19,8 +19,10 @@ function AboutUsGrid() {
     .catch((error) => console.error("Error fetching data: ", error));
   }, []);
 
+
+  
   return (
-    <div className="container mt-4 aboutus-container "  >
+    <div className="mt-4 aboutus-container "  >
       <div className="row row-cols-sm-1 row-cols-md-3 g-2 aboutus-box">
         {aboutUs.map((aboutUsItem) => (
           <AboutUsCard

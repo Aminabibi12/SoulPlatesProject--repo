@@ -129,40 +129,40 @@ function DonationForm() {
 
     const handleOnClick = (event) => {
         event.preventDefault();
-
+    
         let validationErrors = [];
-
+    
         if (!userFullName || userFullName.length === 0 || userFullName.length > 30) {
             validationErrors.push("Full name should be between 1 and 30 characters.");
         }
-
+    
         if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(userEmail)) {
             validationErrors.push("Email is not valid.");
         }
-
+    
         if (!userMessage) {
             validationErrors.push("Message is required.");
         }
-
+    
         if (donationAmount <= 0) {
             validationErrors.push("Please select a donation amount.");
         }
-
+    
         if (validationErrors.length > 0) {
             alert(validationErrors.join("\n"));
             return;
         }
-
+    
         const formData = {
             full_name: userFullName,
             email: userEmail,
             message: userMessage,
             donation_amount: donationAmount,
         };
-
+    
         return createNewDonor(formData);
     };
-
+    
     async function createNewDonor(formData) {
         try {
             const response = await fetch("http://localhost:5550/donors", {

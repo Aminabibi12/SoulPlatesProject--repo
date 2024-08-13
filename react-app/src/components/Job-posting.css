@@ -65,12 +65,12 @@
     background-color: #F4F3EE;
     margin-left: 50px;
     transition: opacity 0.4s, box-shadow 0.5s ease-in-out, transform 3s;
-    box-shadow: 0px 0px 10px #b6b8b1;
+    box-shadow: 0px 0px 10px #666666;
     animation: job-post-animation 4s linear infinite alternate;
   }
   
-  /* Define the keyframes animation */
-@keyframes job-post-animation {
+ 
+/* @keyframes job-post-animation {
     0% {
       transform: scale(1);
     }
@@ -81,7 +81,7 @@
       transform: scale(1);
     }
   } 
-  
+   */
 
 
   .reveal {
